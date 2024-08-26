@@ -32,6 +32,7 @@ public class SecuritySettings {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll() // Allow login
                         // .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ROLE_ADMIN")   
+                        // .requestMatchers(HttpMethod.POST, "/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()    // Allow API GET requests
                         .requestMatchers(HttpMethod.GET, "/tests/**").permitAll()     // Allow tests GET requests
                         .anyRequest().authenticated()                                // Require authentication for other routes

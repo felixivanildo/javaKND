@@ -4,13 +4,18 @@ package com.eventotec.api.services;
 import com.eventotec.api.domain.user.User;
 import com.eventotec.api.domain.user.UserRequestDTO;
 import com.eventotec.api.repositories.UserRepository;
+
+import jakarta.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class UserService {
@@ -47,4 +52,15 @@ public class UserService {
     public List<User> listUser(){
         return userRepository.findAll();
     }
+    
+    public UserDetails findUserById(UUID id){
+        return userRepository.findAllById(id);
+    }
+
+
+    @Transactional
+    public void deleteUserById(UUID id){
+        userRepository.deleteById(id);
+    }
+ 
 }

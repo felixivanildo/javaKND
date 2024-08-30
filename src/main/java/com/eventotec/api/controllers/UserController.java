@@ -1,6 +1,7 @@
 package com.eventotec.api.controllers;
 
 import com.eventotec.api.domain.user.User;
+import com.eventotec.api.domain.user.UserFindDTO;
 import com.eventotec.api.domain.user.UserRequestDTO;
 import com.eventotec.api.domain.user.UserUpdateDTO;
 import com.eventotec.api.repositories.UserRepository;
@@ -44,12 +45,25 @@ public class UserController {
     }
 
 
+    @PostMapping("/consultar/id")
+    public ResponseEntity<UserDetails> listByID(@RequestBody UserFindDTO data) {             
+        final UUID id = UUID.fromString(data.Id());
+       
+
+        UserDetails users =  userService.findUserById(id);
+        return ResponseEntity.ok(users);
+    }
+
+
+
     @PutMapping("/atualizar")
     public ResponseEntity updateUser(@RequestBody UserUpdateDTO data) {
         
         final UUID id = UUID.fromString(data.Id());
-        UserDetails users = userService.findUserById(id);
-        return ResponseEntity.ok(users);
+        
+        User updatUser = userService.updateUsr(id, data);
+
+        return ResponseEntity.ok(updatUser);
     }
 
 

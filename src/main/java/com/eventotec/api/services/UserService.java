@@ -3,6 +3,7 @@ package com.eventotec.api.services;
 
 import com.eventotec.api.domain.user.User;
 import com.eventotec.api.domain.user.UserRequestDTO;
+import com.eventotec.api.domain.user.UserUpdateDTO;
 import com.eventotec.api.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -42,6 +43,21 @@ public class UserService {
         return userRepository.save(newUsr);
     }
 
+
+
+    public User updateUsr (UUID id, UserUpdateDTO data){
+        
+        User existiUser = (User) userRepository.findAllById(id);
+
+        existiUser.setNome(data.nome());
+        existiUser.setCargo(data.cargo());
+        existiUser.setDescription(data.description());
+        existiUser.setAdmin(data.admin());
+        existiUser.setEmail(data.email());
+        existiUser.setPassword(passwordEncoder.encode((data.password())));
+        
+        return userRepository.save(existiUser);
+    }
 
 
    // private String passwordEncoder(String password) {

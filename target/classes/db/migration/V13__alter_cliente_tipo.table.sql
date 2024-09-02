@@ -1,0 +1,2 @@
+ALTER TABLE client_tipo
+ADD COLUMN cliente__tipo_ultimaatualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP;

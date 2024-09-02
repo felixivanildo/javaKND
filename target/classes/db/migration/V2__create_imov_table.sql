@@ -1,7 +1,7 @@
 
 
 CREATE TABLE houses  (
-    imovel_id UUID DEFAULT gen_random_uuid() Primary Key,
+    imovel_id serial Primary Key,
     rua varchar (100) not null,
     numero_casa varchar (100) not null,
     bloco varchar (100) not null,

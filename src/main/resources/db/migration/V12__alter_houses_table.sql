@@ -1,0 +1,2 @@
+ALTER TABLE houses 
+ADD COLUMN imovel_ultimaatualizacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP ;

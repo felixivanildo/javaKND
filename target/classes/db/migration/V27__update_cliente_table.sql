@@ -1,0 +1,2 @@
+ALTER TABLE cliente
+ALTER COLUMN cltp_id SET NOT NULL;

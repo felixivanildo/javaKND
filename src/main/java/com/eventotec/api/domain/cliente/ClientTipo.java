@@ -10,6 +10,7 @@ public class ClientTipo {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cltp_id" ,nullable = false)
     private Integer cltpId;
 
     @Column(nullable = false, length = 40)

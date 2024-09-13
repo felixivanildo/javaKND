@@ -1,6 +1,6 @@
 package com.eventotec.api.domain.cliente;
 
-import javax.persistence.*;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,10 +9,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.UUID;
 
 @Entity
@@ -37,8 +40,9 @@ public class Cliente {
     private String nomeMae;
 
     @Column(name = "cliente_ultimaatualizacao", nullable = false, columnDefinition = "timestamp default current_timestamp")
-    private Timestamp ultimaAtualizacao;
+    private LocalDate ultimaAtualizacao;
 
+    // @OneToOne
     @Column(name = "usuario_id")
     private UUID usuarioId;
 
@@ -88,11 +92,11 @@ public class Cliente {
         this.nomeMae = nomeMae;
     }
 
-    public Timestamp getUltimaAtualizacao() {
+    public LocalDate getUltimaAtualizacao() {
         return ultimaAtualizacao;
     }
 
-    public void setUltimaAtualizacao(Timestamp ultimaAtualizacao) {
+    public void setUltimaAtualizacao(LocalDate ultimaAtualizacao) {
         this.ultimaAtualizacao = ultimaAtualizacao;
     }
 
@@ -108,7 +112,12 @@ public class Cliente {
         return clientTipo;
     }
 
-    public void setClientTipo(ClientTipo clientTipo) {
-        this.clientTipo = clientTipo;
+    public void setClientTipo(ClientTipo clientTipo2) {
+        this.clientTipo = clientTipo2;
     }
+
+    // public void setClientTipo(Optional<ClientTipo> clientTipo2) {
+    //     // TODO Auto-generated method stub
+    //     throw new UnsupportedOperationException("Unimplemented method 'setClientTipo'");
+    // }
 }

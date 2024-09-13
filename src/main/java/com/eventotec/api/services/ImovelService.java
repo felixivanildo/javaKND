@@ -37,10 +37,10 @@ public class ImovelService {
 
 
     public Imovel updatImovel (Integer id, ImovelUpdateDTO data){
-        System.out.println("gere");
+        
         Optional<Imovel> existImovel =  housesRepository.findById(id);
 
-        System.out.println(existImovel);
+        
 
        if(existImovel.isPresent()){
             Imovel existingImovel = existImovel.get();

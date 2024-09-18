@@ -60,7 +60,7 @@ public class User implements  UserDetails{
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.toUpperCase();
     }
 
     public void setPassword(String password){

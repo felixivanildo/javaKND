@@ -30,11 +30,23 @@ public class UserController {
     
 
     @PostMapping("/inserir")
-    public ResponseEntity<User> create(@RequestBody UserRequestDTO data) {
+    public ResponseEntity<Map<String, Object>> create(@RequestBody UserRequestDTO data) {
+        List<User> users = userService.listUser();
+ 
+        if (users.stream().anyMatch(user -> user.getNome().equals(data.nome().toUpperCase()))) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("MESSAGE", "USER ALREADY EXISTS");
+
+            return ResponseEntity.ok(response);
+        }
+        
         User newUser = userService.createUsr(data);
 
+        Map<String, Object> response = new HashMap<>();
+        response.put("MESSAGE", "USER CREATED");
+        response.put("USER", newUser);
         // System.out.println("newUser");
-        return ResponseEntity.ok(newUser);
+        return ResponseEntity.ok(response);
     }
 
 

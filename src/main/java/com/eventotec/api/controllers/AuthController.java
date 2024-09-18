@@ -1,5 +1,9 @@
 package com.eventotec.api.controllers;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.eventotec.api.domain.auth.AuthDTO;
 import com.eventotec.api.domain.user.User;
 import com.eventotec.api.security.token.TokenService;
+import com.eventotec.api.services.UserService;
 
 import ch.qos.logback.core.subst.Token;
 
@@ -22,6 +27,9 @@ public class AuthController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -42,7 +50,15 @@ public class AuthController {
 
             var token = tokenService.generateToken((User) auth.getPrincipal());
 
-            return ResponseEntity.ok(token);
+            List<User> user = userService.listUser();
+
+            var logedUser = user.stream().filter(users -> users.getNome().equals(data.username()));
+
+             Map<String, Object> response = new HashMap<>();
+             response.put("token", token);
+             response.put("user", logedUser);
+
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             // TODO: handle exception
             return ResponseEntity.status(401).build();

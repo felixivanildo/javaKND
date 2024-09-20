@@ -71,8 +71,13 @@ public class ClienteService {
     }
 
 
-    public Optional<Cliente> listClientesId (Integer id) {
-        return clienteRepository.findById(id);
+    public Cliente listClientesId (Integer id) {
+        Optional<Cliente> existCliente = clienteRepository.findById(id);
+        
+        if(existCliente.isPresent()){
+            return existCliente.get();
+        }
+         throw new RuntimeException("ClientTipo not found for id: " + id);
     }
 
     public void deleteCliente (Integer id){

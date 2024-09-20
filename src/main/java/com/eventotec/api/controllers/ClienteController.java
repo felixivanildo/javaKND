@@ -45,8 +45,8 @@ public class ClienteController {
     }
 
     @PostMapping("/consultar/id")
-    public ResponseEntity<Optional<Cliente>> listClienteId (@RequestBody ClienteFindDTO data){
-        Optional<Cliente> clientes = clienteService.listClientesId(data.id());
+    public ResponseEntity<Cliente> listClienteId (@RequestBody ClienteFindDTO data){
+        Cliente clientes = clienteService.listClientesId(data.id());
 
         return ResponseEntity.ok(clientes);
 

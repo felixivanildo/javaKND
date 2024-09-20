@@ -31,6 +31,8 @@ public class SecuritySettings {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.POST, "/auth/**").permitAll() // Allow login
+                        .requestMatchers(HttpMethod.GET, "/api-docs").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
                         // .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ROLE_ADMIN")   
                         // .requestMatchers(HttpMethod.POST, "/images/**").permitAll()
                         .requestMatchers(HttpMethod.GET, "/api/**").permitAll()    // Allow API GET requests

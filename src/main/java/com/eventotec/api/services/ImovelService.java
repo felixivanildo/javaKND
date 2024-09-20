@@ -76,8 +76,14 @@ public class ImovelService {
         return housesRepository.findAll();
     }
 
-    public Optional<Imovel> getallImovelByid(Integer id) {
-        return housesRepository.findById(id);
+    public Imovel getallImovelByid(Integer id) {
+        Optional<Imovel> existImovel = housesRepository.findById(id);
+
+        if(existImovel.isPresent()){
+            return existImovel.get();
+        }
+
+        throw new RuntimeException("Imovel not found for id: " + id);
     }
 
     public void deleteImovel (Integer id){

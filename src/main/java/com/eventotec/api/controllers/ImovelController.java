@@ -47,8 +47,8 @@ public class ImovelController {
     
 
     @PostMapping("/consultar/id")
-    public ResponseEntity<Optional<Imovel>> getallImovelsId(@RequestBody ImovelFindDTO  data) {
-        Optional<Imovel> imoveis = imovelService.getallImovelByid(data.id());
+    public ResponseEntity<Imovel> getallImovelsId(@RequestBody ImovelFindDTO  data) {
+        Imovel imoveis = imovelService.getallImovelByid(data.id());
        
         return ResponseEntity.ok(imoveis);
     }

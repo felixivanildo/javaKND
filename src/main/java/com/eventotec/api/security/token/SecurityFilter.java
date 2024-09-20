@@ -32,7 +32,6 @@ public class SecurityFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
 
-                // System.out.println("TESTESTESTESTESTESTE");
                 var token = this.recoverToken(request);
                 if(token != null){
                     var subject = tokenService.validate(token);

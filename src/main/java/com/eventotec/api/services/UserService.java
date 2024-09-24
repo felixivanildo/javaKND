@@ -66,7 +66,10 @@ public class UserService {
    // }
 
     public List<User> listUser(){
-        return userRepository.findAll();
+        List<User> users = userRepository.findAll();
+
+        users.forEach(user -> user.setPassword(null));
+        return users;
     }
     
     public UserDetails findUserById(UUID id){

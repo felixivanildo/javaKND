@@ -51,6 +51,7 @@ public class AuthController {
             var token = tokenService.generateToken((User) auth.getPrincipal());
 
             List<User> user = userService.listUser();
+        
 
             var logedUser = user.stream().filter(users -> users.getNome().equals(data.username()));
 

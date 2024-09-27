@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Ou qualquer branch que você deseja monitorar
 
 jobs:
   build:
@@ -11,18 +11,19 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3  # Atualizado para a versão 3
 
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v3  # Atualizado para a versão 3
         with:
           java-version: '21'
+          distribution: 'adopt'  # Adicionado o campo distribution
 
       - name: Build with Maven
         run: mvn clean package
 
       - name: Upload JAR file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v3  # Atualizado para a versão 3
         with:
           name: spring-app
           path: target/api-0.0.1-SNAPSHOT.jar
@@ -33,7 +34,7 @@ jobs:
 
     steps:
       - name: Download JAR file
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v3  # Atualizado para a versão 3
         with:
           name: spring-app
 

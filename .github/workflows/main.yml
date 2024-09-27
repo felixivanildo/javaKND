@@ -46,8 +46,8 @@ jobs:
 
       - name: Deploy to EC2
         run: |
-              scp -o StrictHostKeyChecking=no -i /home/ec2-user/.ssh/ls api-0.0.1-SNAPSHOT.jar ec2-user@3.141.13.199:~/    
-              ssh -o StrictHostKeyChecking=no -i /home/ec2-user/.ssh/ls ec2-user@3.141.13.199 << 'EOF'
+              scp -v -o StrictHostKeyChecking=no -i /home/ec2-user/.ssh/ls api-0.0.1-SNAPSHOT.jar ec2-user@3.141.13.199:~/    
+              ssh -v -o StrictHostKeyChecking=no -i /home/ec2-user/.ssh/ls ec2-user@3.141.13.199 << 'EOF'
               cd ~
               docker-compose down
               docker-compose up --build -d

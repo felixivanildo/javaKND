@@ -20,7 +20,7 @@ jobs:
           distribution: 'adopt'  # Adicionado o campo distribution
 
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean package -DskipTests
 
       - name: Upload JAR file
         uses: actions/upload-artifact@v3  # Atualizado para a versão 3

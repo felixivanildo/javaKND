@@ -42,6 +42,7 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+          ssh-key-passphrase: ${{ secrets.EC2_PASSPHRASE }}
 
       - name: Deploy to EC2
         run: |

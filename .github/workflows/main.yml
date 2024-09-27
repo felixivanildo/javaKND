@@ -39,10 +39,10 @@ jobs:
           name: spring-app
 
       - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+        uses: marwaha-raghav/ssh-agent-ansible@v0.2.1
         with:
-          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
-          ssh-key-passphrase: ${{ secrets.EC2_PASSPHRASE }}
+          ANSIBLE_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SSH_KEY_PASSPHRASE: ${{ secrets.EC2_PASSPHRASE }}
 
       - name: Deploy to EC2
         run: |
